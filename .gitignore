@@ -1,0 +1,36 @@
+# Ruby
+*.gem
+*.rbc
+/.bundle/
+/vendor/bundle/
+/coverage/
+/pkg/
+/tmp/
+Gemfile.lock
+.env
+.env.*
+!.env.example
+
+# RubyMine / IntelliJ
+.idea/
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+!.idea/runConfigurations/
+*.iml
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+
+# Security
+gem-private_key.pem
+*.pem
+*.key
+
+# History
+.irb_history
+.pry_history
+.byebug_history
+.rspec_status
+
+

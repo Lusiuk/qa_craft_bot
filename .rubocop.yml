@@ -1,0 +1,48 @@
+# Подключение расширений (например, для тестов или производительности)
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  # Указывает версию Ruby, чтобы RuboCop не предлагал синтаксис новых версий
+  TargetRubyVersion: 3.2
+  # Исключение файлов, которые не нужно проверять (автосгенерированные файлы)
+  Exclude:
+    - 'bin/*'
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+  # Отображать названия правил в выводе, чтобы их было проще гуглить
+  DisplayCopNames: true
+
+# Пример настройки конкретного правила
+Metrics/AbcSize:
+  # Увеличиваем порог сложности метода (по умолчанию 17)
+  Max: 35
+  # Исключаем тесты из проверки на сложность
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - '*.gemspec'
+
+Style/Documentation:
+  # Отключаем обязательное требование комментариев над каждым классом
+  Enabled: false
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 5 # Разрешить до 5 проверок в одном тесте
+
+RSpec/ExampleLength:
+  Max: 15 # Разрешить тесты до 15 строк
+
+RSpec/FactoryBot/CreateList:
+  Enabled: false
