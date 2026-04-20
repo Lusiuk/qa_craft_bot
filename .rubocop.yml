@@ -1,48 +1,66 @@
-# Подключение расширений (например, для тестов или производительности)
 require:
   - rubocop-performance
-  - rubocop-rspec
 
 AllCops:
+  TargetRubyVersion: 3.3
   NewCops: enable
-  # Указывает версию Ruby, чтобы RuboCop не предлагал синтаксис новых версий
-  TargetRubyVersion: 3.2
-  # Исключение файлов, которые не нужно проверять (автосгенерированные файлы)
+  SuggestExtensions: false # Убираем подсказки про rubocop-rake
   Exclude:
-    - 'bin/*'
     - 'vendor/**/*'
-    - 'spec/fixtures/**/*'
-  # Отображать названия правил в выводе, чтобы их было проще гуглить
-  DisplayCopNames: true
+    - 'db/schema.rb'
+    - 'bin/*'
 
-# Пример настройки конкретного правила
+# Ботам не обязательно комментировать каждый класс
+Style/Documentation:
+  Enabled: false
+
 Metrics/AbcSize:
-  # Увеличиваем порог сложности метода (по умолчанию 17)
-  Max: 35
-  # Исключаем тесты из проверки на сложность
+  Max: 45
+# FSM-классы (AuthorFSM, StudentFSM)
+Metrics/ClassLength:
+  Max: 300
   Exclude:
-    - 'spec/**/*'
+    - 'app/state_machines/**/*'
 
 Metrics/MethodLength:
-  Max: 20
+  Max: 30
+  Exclude:
+    - 'app/state_machines/**/*'
+    - 'app/bot_processor.rb'
 
 Metrics/BlockLength:
+  Max: 50
   Exclude:
     - 'spec/**/*'
-    - '*.gemspec'
+    - 'app/state_machines/**/*'
 
-Style/Documentation:
-  # Отключаем обязательное требование комментариев над каждым классом
+Metrics/CyclomaticComplexity:
+  Max: 20
+  Exclude:
+    - 'app/state_machines/**/*'
+Metrics/PerceivedComplexity:
+  Max: 20
+Metrics/ParameterLists:
+  Max: 8  # Репозитории часто принимают много параметров
+
+# Разрешаем длинные строки
+Layout/LineLength:
+  Max: 140
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+# Разрешаем префиксы get_/set_ (удобно для методов API)
+Naming/AccessorMethodName:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false  # Тесты сценариев описывают поведение, а не один класс
+RSpec/ExampleLength:
+  Max: 50         # Интеграционные тесты длинные
+RSpec/MultipleExpectations:
+  Max: 25         # В одном сценарии проверяется цепочка ответов бота
+RSpec/FactoryBot/CreateList:
   Enabled: false
 
 Gemspec/DevelopmentDependencies:
-  Enabled: false
-
-RSpec/MultipleExpectations:
-  Max: 5 # Разрешить до 5 проверок в одном тесте
-
-RSpec/ExampleLength:
-  Max: 15 # Разрешить тесты до 15 строк
-
-RSpec/FactoryBot/CreateList:
-  Enabled: false
+  Enabled: false  # Бот не публикуется как gem, dev-зависимости в .gemspec допустимы

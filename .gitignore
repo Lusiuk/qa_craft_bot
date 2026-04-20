@@ -33,4 +33,11 @@ gem-private_key.pem
 .byebug_history
 .rspec_status
 
+# SQLite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+
 
