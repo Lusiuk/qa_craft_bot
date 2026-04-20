@@ -1,7 +1,6 @@
 require:
   - rubocop-performance
   - rubocop-rspec
-  - rubocop-factory_bot
 
 AllCops:
   TargetRubyVersion: 3.3
@@ -61,8 +60,7 @@ RSpec/ExampleLength:
   Max: 50         # Интеграционные тесты длинные
 RSpec/MultipleExpectations:
   Max: 25         # В одном сценарии проверяется цепочка ответов бота
-FactoryBot/CreateList:
-  AutoCorrect: true
+RSpec/FactoryBot:
   Enabled: false
 
 Gemspec/DevelopmentDependencies:
