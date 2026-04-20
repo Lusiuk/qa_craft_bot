@@ -62,6 +62,7 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Max: 25         # В одном сценарии проверяется цепочка ответов бота
 FactoryBot/CreateList:
+  AutoCorrect: true
   Enabled: false
 
 Gemspec/DevelopmentDependencies:
