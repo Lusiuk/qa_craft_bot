@@ -166,39 +166,6 @@ bash start.sh
 
 ---
 
-## Тесты
-
-Запуск всех тестов:
-
-```bash
-bundle exec rspec
-```
-
-Запуск конкретной группы (пример):
-
-```bash
-bundle exec rspec spec/flows
-```
-
----
-
-## RuboCop
-
-Авто‑исправление (безопасные правки):
-
-```bash
-bundle exec rubocop -a
-```
-
-Если используете Ruby 4.0 и RuboCop ругается на `ostruct`, добавьте гем:
-
-```bash
-bundle add ostruct --group development
-bundle install
-```
-
----
-
 ## Лицензия
 
 MIT — делайте с этим что хотите :)
